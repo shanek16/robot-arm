@@ -9,91 +9,28 @@ float px=-100,py=-100,pz=100,r1=1,r4=0,r7=0;
 double Au0=0,Au1=0,Au2=0,Bu0=0,Bu1=0,Bu2=0;
 int count=0;
 
-float calculate1()
+struct Solution 
 {
-  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-  Bu0=sqrt(1-sq(Au0));
-  pos3=atan2(Bu0,Au0)*180/PI;
-  Serial.print("pos3: ");
-  Serial.println(pos3);
+  float pos1, pos2, pos3, pos4;
+};
 
-  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-  Bu1=sqrt(1-sq(Au1));
-  pos2=atan2(Bu1,Au1)*180/PI;
-  Serial.print("pos2: ");
-  Serial.println(pos2);
+struct Solution s1,s2,s3,s4;
 
-  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-  Bu2=-cos(pos1)*r4+r1*sin(pos1);
-  pos4=atan2(Bu2,Au2)*180/PI;
-  Serial.print("pos4: ");
-  Serial.println(pos4);
-  Serial.println("");
-}
-
-float calculate2()
+float calculate(float B0sign,float B1sign)
 {
-  Serial.println("case2:");
+  
+  pos1=atan2(py,px)*180/PI;
   Serial.print("pos1: ");
   Serial.println(pos1);
+  
   Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-  Bu0=-sqrt(1-sq(Au0));
+  Bu0=B0sign*sqrt(1-sq(Au0));
   pos3=atan2(Bu0,Au0)*180/PI;
   Serial.print("pos3: ");
   Serial.println(pos3);
 
   Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-  Bu1=sqrt(1-sq(Au1));
-  pos2=atan2(Bu1,Au1)*180/PI;
-  Serial.print("pos2: ");
-  Serial.println(pos2);
-
-  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-  Bu2=-cos(pos1)*r4+r1*sin(pos1);
-  pos4=atan2(Bu2,Au2)*180/PI;
-  Serial.print("pos4: ");
-  Serial.println(pos4);
-  Serial.println("");
-}
-
-float calculate3()
-{
-  Serial.println("case3:");
-  Serial.print("pos1: ");
-  Serial.println(pos1);
-  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-  Bu0=sqrt(1-sq(Au0));
-  pos3=atan2(Bu0,Au0)*180/PI;
-  Serial.print("pos3: ");
-  Serial.println(pos3);
-
-  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-  Bu1=-sqrt(1-sq(Au1));
-  pos2=atan2(Bu1,Au1)*180/PI;
-  Serial.print("pos2: ");
-  Serial.println(pos2);
-
-  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-  Bu2=-cos(pos1)*r4+r1*sin(pos1);
-  pos4=atan2(Bu2,Au2)*180/PI;
-  Serial.print("pos4: ");
-  Serial.println(pos4);
-  Serial.println("");
-}
-
-float calculate4()
-{
-  Serial.println("case4:");
-  Serial.print("pos1: ");
-  Serial.println(pos1);
-  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-  Bu0=-sqrt(1-sq(Au0));
-  pos3=atan2(Bu0,Au0)*180/PI;
-  Serial.print("pos3: ");
-  Serial.println(pos3);
-
-  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-  Bu1=-sqrt(1-sq(Au1));
+  Bu1=B1sign*sqrt(1-sq(Au1));
   pos2=atan2(Bu1,Au1)*180/PI;
   Serial.print("pos2: ");
   Serial.println(pos2);
@@ -142,39 +79,43 @@ void loop()
 
     Serial.println("Entered values:");
     Serial.print(px);Serial.print(" ");Serial.print(py );Serial.print(" ");Serial.println(pz);
-    Serial.print(r1 );Serial.print(" ");Serial.print(r4 );Serial.print(" ");Serial.println(r7);
+    Serial.print(r1 );Serial.print(" ");Serial.print(r4 );Serial.print(" ");Serial.println(r7);Serial.println("");
 
-      if(pow(px,2)+pow(py,2)+pow(pz,2)>pow((l2+l4),2))//longer than robot arm
-      {
-        Serial.println("not reachable point");
-        Serial.println("Re-enter:");
-      }
-      else
-      {
-      pos1=atan2(py,px)*180/PI;
-      Serial.print("pos1: ");
-      Serial.println(pos1);
+    if(pow(px,2)+pow(py,2)+pow(pz,2)>pow((l2+l4),2))//longer than robot arm
+    {
+      Serial.println("not reachable point");
+      Serial.println("Re-enter:");
+    }
+    else
+    {
+      Serial.println("case1:");
+      calculate(1,1);
+      s1.pos1=pos1;
+      s1.pos2=pos2;
+      s1.pos3=pos3;
+      s2.pos4=pos4;
 
-      calculate1();
+      Serial.println("case2:");
+      calculate(1,-1);
+      s2.pos1=pos1;
+      s2.pos2=pos2;
+      s2.pos3=pos3;
+      s2.pos4=pos4;
 
-      if(pos1<0||pos2<0||pos3<0||pos4<0||1-sq(Au1)<0||1-sq(Au0)<0)
-      {
-        Serial.println("out of angle range, finding another solution...");
-        calculate2();
-        if(pos1<0||pos2<0||pos3<0||pos4<0||1-sq(Au1)<0||1-sq(Au0)<0)
-        {
-          calculate3();
-          if(pos1<0||pos2<0||pos3<0||pos4<0||1-sq(Au1)<0||1-sq(Au0)<0)
-          {
-            calculate4;
-            if(pos1<0||pos2<0||pos3<0||pos4<0||1-sq(Au1)<0||1-sq(Au0)<0)
-            {
-              Serial.println("no solution");
-            }
- 
-          }
-        }
-      }
+      Serial.println("case3:");
+      calculate(-1,1);
+      s3.pos1=pos1;
+      s3.pos2=pos2;
+      s3.pos3=pos3;
+      s3.pos4=pos4;
+
+      Serial.println("case4:");
+      calculate(-1,-1);
+      s4.pos1=pos1;
+      s4.pos2=pos2;
+      s4.pos3=pos3;
+      s4.pos4=pos4;
+
       
       servo1.write(pos1);            
       delay(500);
@@ -189,7 +130,7 @@ void loop()
     
       servo4.write(pos4);            
       delay(500);
-
+  
        if(count==1)
     {
       Serial.println("enter pos5");
@@ -199,7 +140,7 @@ void loop()
         Serial.print("pos5: ");
         Serial.println(pos5);
         servo5.write(pos5); 
-/*
+  /*
         Serial.println("enter pos6");
         pos6=Serial.parseFloat();
         Serial.print("pos6: ");
@@ -219,6 +160,6 @@ void loop()
       servo6.write(pos6);            
       delay(15);
       */
-      }
+    }
    }
 }

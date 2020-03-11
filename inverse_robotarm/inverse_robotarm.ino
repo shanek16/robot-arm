@@ -136,7 +136,6 @@ void loop()
   
   else if(count==1&&Serial.available())
   {
-    Serial.println("now in count1");
     px=Serial.parseFloat();
     py=Serial.parseFloat();
     pz=Serial.parseFloat();
@@ -152,7 +151,6 @@ void loop()
 
   else if(count==2)
   {
-    Serial.println("now in count2");
     if(pow(px,2)+pow(py,2)+pow(pz,2)>pow((l2+l4),2))//longer than robot arm
     {
       Serial.println("not reachable point");
@@ -189,7 +187,7 @@ void loop()
       s4.pos3=pos3;
       s4.pos4=pos4;
 
-      Serial.println("Which case do you like?: 1,2,3,4");
+      Serial.println("Which case do you like?: 1,2,3,4\n another point: enter 5\n");
       count=3;
     }
   }//closing count2
@@ -203,10 +201,18 @@ void loop()
   
   else if(count==4)
   {
-    movemotor();
-    times++;
-    Serial.println("");
-    Serial.print("move");Serial.print(times);Serial.println(":");
-    count=0;
+    if(case_number==5)
+    {
+      times++;
+      Serial.println("");
+      Serial.print("move");Serial.print(times);Serial.println(":");
+      count=0;
+    }
+    else
+    {
+      movemotor();
+      count=3;
+      Serial.println("\nWhich case do you like?: 1,2,3,4\n another point: enter 5\n");
+    }
   }
 }//closing loop

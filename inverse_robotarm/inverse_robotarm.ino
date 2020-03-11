@@ -11,99 +11,99 @@ int count=0;
 
 float calculate1()
 {
-      Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-      Bu0=sqrt(1-sq(Au0));
-      pos3=atan2(Bu0,Au0)*180/PI;
-      Serial.print("pos3: ");
-      Serial.println(pos3);
-    
-      Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-      Bu1=sqrt(1-sq(Au1));
-      pos2=atan2(Bu1,Au1)*180/PI;
-      Serial.print("pos2: ");
-      Serial.println(pos2);
-    
-      Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-      Bu2=-cos(pos1)*r4+r1*sin(pos1);
-      pos4=atan2(Bu2,Au2)*180/PI;
-      Serial.print("pos4: ");
-      Serial.println(pos4);
-      Serial.println("");
+  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
+  Bu0=sqrt(1-sq(Au0));
+  pos3=atan2(Bu0,Au0)*180/PI;
+  Serial.print("pos3: ");
+  Serial.println(pos3);
+
+  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
+  Bu1=sqrt(1-sq(Au1));
+  pos2=atan2(Bu1,Au1)*180/PI;
+  Serial.print("pos2: ");
+  Serial.println(pos2);
+
+  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
+  Bu2=-cos(pos1)*r4+r1*sin(pos1);
+  pos4=atan2(Bu2,Au2)*180/PI;
+  Serial.print("pos4: ");
+  Serial.println(pos4);
+  Serial.println("");
 }
 
 float calculate2()
 {
-      Serial.println("case2:");
-      Serial.print("pos1: ");
-      Serial.println(pos1);
-      Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-      Bu0=-sqrt(1-sq(Au0));
-      pos3=atan2(Bu0,Au0)*180/PI;
-      Serial.print("pos3: ");
-      Serial.println(pos3);
-    
-      Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-      Bu1=sqrt(1-sq(Au1));
-      pos2=atan2(Bu1,Au1)*180/PI;
-      Serial.print("pos2: ");
-      Serial.println(pos2);
-    
-      Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-      Bu2=-cos(pos1)*r4+r1*sin(pos1);
-      pos4=atan2(Bu2,Au2)*180/PI;
-      Serial.print("pos4: ");
-      Serial.println(pos4);
-      Serial.println("");
+  Serial.println("case2:");
+  Serial.print("pos1: ");
+  Serial.println(pos1);
+  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
+  Bu0=-sqrt(1-sq(Au0));
+  pos3=atan2(Bu0,Au0)*180/PI;
+  Serial.print("pos3: ");
+  Serial.println(pos3);
+
+  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
+  Bu1=sqrt(1-sq(Au1));
+  pos2=atan2(Bu1,Au1)*180/PI;
+  Serial.print("pos2: ");
+  Serial.println(pos2);
+
+  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
+  Bu2=-cos(pos1)*r4+r1*sin(pos1);
+  pos4=atan2(Bu2,Au2)*180/PI;
+  Serial.print("pos4: ");
+  Serial.println(pos4);
+  Serial.println("");
 }
 
 float calculate3()
 {
-      Serial.println("case3:");
-      Serial.print("pos1: ");
-      Serial.println(pos1);
-      Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-      Bu0=sqrt(1-sq(Au0));
-      pos3=atan2(Bu0,Au0)*180/PI;
-      Serial.print("pos3: ");
-      Serial.println(pos3);
-    
-      Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-      Bu1=-sqrt(1-sq(Au1));
-      pos2=atan2(Bu1,Au1)*180/PI;
-      Serial.print("pos2: ");
-      Serial.println(pos2);
-    
-      Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-      Bu2=-cos(pos1)*r4+r1*sin(pos1);
-      pos4=atan2(Bu2,Au2)*180/PI;
-      Serial.print("pos4: ");
-      Serial.println(pos4);
-      Serial.println("");
+  Serial.println("case3:");
+  Serial.print("pos1: ");
+  Serial.println(pos1);
+  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
+  Bu0=sqrt(1-sq(Au0));
+  pos3=atan2(Bu0,Au0)*180/PI;
+  Serial.print("pos3: ");
+  Serial.println(pos3);
+
+  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
+  Bu1=-sqrt(1-sq(Au1));
+  pos2=atan2(Bu1,Au1)*180/PI;
+  Serial.print("pos2: ");
+  Serial.println(pos2);
+
+  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
+  Bu2=-cos(pos1)*r4+r1*sin(pos1);
+  pos4=atan2(Bu2,Au2)*180/PI;
+  Serial.print("pos4: ");
+  Serial.println(pos4);
+  Serial.println("");
 }
 
 float calculate4()
 {
-      Serial.println("case4:");
-      Serial.print("pos1: ");
-      Serial.println(pos1);
-      Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
-      Bu0=-sqrt(1-sq(Au0));
-      pos3=atan2(Bu0,Au0)*180/PI;
-      Serial.print("pos3: ");
-      Serial.println(pos3);
-    
-      Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
-      Bu1=-sqrt(1-sq(Au1));
-      pos2=atan2(Bu1,Au1)*180/PI;
-      Serial.print("pos2: ");
-      Serial.println(pos2);
-    
-      Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
-      Bu2=-cos(pos1)*r4+r1*sin(pos1);
-      pos4=atan2(Bu2,Au2)*180/PI;
-      Serial.print("pos4: ");
-      Serial.println(pos4);
-      Serial.println("");
+  Serial.println("case4:");
+  Serial.print("pos1: ");
+  Serial.println(pos1);
+  Au0=(sq(px*cos(pos1)+py*sin(pos1))+sq(pz)-sq(l4)-sq(l2))/(2*l4*l2);
+  Bu0=-sqrt(1-sq(Au0));
+  pos3=atan2(Bu0,Au0)*180/PI;
+  Serial.print("pos3: ");
+  Serial.println(pos3);
+
+  Au1=((cos(pos3)*l4+l2)*(cos(pos1)*px+py*sin(pos1))+pz*sin(pos3)*l4)/(sq(px*cos(pos1)+py*sin(pos1))+sq(pz));
+  Bu1=-sqrt(1-sq(Au1));
+  pos2=atan2(Bu1,Au1)*180/PI;
+  Serial.print("pos2: ");
+  Serial.println(pos2);
+
+  Au2=(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*cos(pos1)*r1-(cos(pos2)*sin(pos3)+cos(pos3)*sin(pos2))*sin(pos1)*r4+(cos(pos2)*cos(pos3)-sin(pos2)*sin(pos3))*r7;
+  Bu2=-cos(pos1)*r4+r1*sin(pos1);
+  pos4=atan2(Bu2,Au2)*180/PI;
+  Serial.print("pos4: ");
+  Serial.println(pos4);
+  Serial.println("");
 }
 
 void setup() 
@@ -131,7 +131,7 @@ void loop()
   count=1;
   }
   
-  if(Serial.available()&&count==1)
+  if(Serial.available())
   {
     px=Serial.parseFloat();
     py=Serial.parseFloat();

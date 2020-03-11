@@ -47,6 +47,7 @@ float calculate(float B0sign,float B1sign)
 
 void movemotor()
 {
+  Serial.println("activating...");
   if(case_number==1)
   {
     servo1.write(s1.pos1);            
@@ -124,8 +125,9 @@ void setup()
 
 void loop() 
 { 
+  /*
   Serial.print("round");Serial.print(times);Serial.print(": ");
-  Serial.println(count);
+  Serial.println(count);*/
   if(count==0)
   {  
     Serial.println("Enter px py pz r1 r4 r7:");
@@ -134,6 +136,7 @@ void loop()
   
   else if(count==1&&Serial.available())
   {
+    Serial.println("now in count1");
     px=Serial.parseFloat();
     py=Serial.parseFloat();
     pz=Serial.parseFloat();
@@ -149,6 +152,7 @@ void loop()
 
   else if(count==2)
   {
+    Serial.println("now in count2");
     if(pow(px,2)+pow(py,2)+pow(pz,2)>pow((l2+l4),2))//longer than robot arm
     {
       Serial.println("not reachable point");
@@ -184,27 +188,25 @@ void loop()
       s4.pos2=pos2;
       s4.pos3=pos3;
       s4.pos4=pos4;
+
+      Serial.println("Which case do you like?: 1,2,3,4");
       count=3;
     }
   }//closing count2
 
-  else if(count==3)
+  else if(count==3&&Serial.available())
   {
-    //ask which case
-    Serial.println("Which case do you like?: 1,2,3,4");
-    if(Serial.available())
-    {
-      case_number=Serial.parseInt();
-      Serial.print("You chose case");Serial.println(case_number);
-      count=4;
-    }
+    case_number=Serial.parseInt();
+    Serial.print("You chose case");Serial.println(case_number);
+    count=4;
   }//closing count3
-
-  else if(count=4)
+  
+  else if(count==4)
   {
     movemotor();
+    times++;
+    Serial.println("");
+    Serial.print("move");Serial.print(times);Serial.println(":");
     count=0;
   }
-  else count=1;
- times++; 
 }//closing loop
